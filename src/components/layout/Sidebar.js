@@ -96,7 +96,7 @@ const Sidebar = () => {
       id="hamburger-button"
       onClick={() => setIsOpen(!isOpen)}
       style={{ zIndex: 1000 }}
-      className="lg:hidden fixed top-4 left-4 p-2 rounded-lg bg-white shadow-sm focus:outline-none"
+      className="lg:hidden fixed top-4 left-4 p-2 focus:outline-none"
       aria-label="Toggle menu"
     >
       <svg
@@ -172,7 +172,7 @@ const Sidebar = () => {
       {/* Mobile sidebar */}
       <div
         id="mobile-sidebar"
-        style={{ zIndex: 999 }}
+        style={{ zIndex: 1001 }}
         className={`lg:hidden fixed top-0 left-0 bg-white text-gray-800 w-64 h-screen p-6 transform transition-transform duration-300 ease-in-out shadow-xl ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
