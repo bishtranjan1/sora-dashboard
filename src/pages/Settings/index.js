@@ -168,9 +168,10 @@ const SettingsPage = () => {
           {activeTab === "profile" && (
             <div>
               <form onSubmit={handleSubmit}>
-                <div className="flex">
-                  {/* Photo Section - 20% width */}
-                  <div className="w-1/5">
+                {/* Responsive layout for desktop/mobile */}
+                <div className="flex flex-col lg:flex-row">
+                  {/* Photo Section - centered on mobile, 20% width on desktop */}
+                  <div className="w-full lg:w-1/5 flex justify-center mb-6 lg:mb-0">
                     <div className="flex flex-col items-center">
                       <div className="relative">
                         <div className="w-32 h-32 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
@@ -255,11 +256,11 @@ const SettingsPage = () => {
                     </div>
                   </div>
 
-                  {/* Form Section - 80% width */}
-                  <div className="w-4/5 space-y-4">
+                  {/* Form Section - full width on mobile, 80% width on desktop */}
+                  <div className="w-full lg:w-4/5 space-y-4">
                     {/* Your Name and User Name */}
-                    <div className="flex space-x-4">
-                      <div className="w-1/2">
+                    <div className="flex flex-col lg:flex-row lg:space-x-4 space-y-4 lg:space-y-0">
+                      <div className="w-full lg:w-1/2">
                         <label className="block text-sm font-medium text-gray-700 mb-1">
                           Your Name
                         </label>
@@ -271,7 +272,7 @@ const SettingsPage = () => {
                           required
                         />
                       </div>
-                      <div className="w-1/2">
+                      <div className="w-full lg:w-1/2">
                         <label className="block text-sm font-medium text-gray-700 mb-1">
                           User Name
                         </label>
@@ -286,8 +287,8 @@ const SettingsPage = () => {
                     </div>
 
                     {/* Email and Password */}
-                    <div className="flex space-x-4">
-                      <div className="w-1/2">
+                    <div className="flex flex-col lg:flex-row lg:space-x-4 space-y-4 lg:space-y-0">
+                      <div className="w-full lg:w-1/2">
                         <label className="block text-sm font-medium text-gray-700 mb-1">
                           Email
                         </label>
@@ -299,7 +300,7 @@ const SettingsPage = () => {
                           required
                         />
                       </div>
-                      <div className="w-1/2">
+                      <div className="w-full lg:w-1/2">
                         <label className="block text-sm font-medium text-gray-700 mb-1">
                           Password
                         </label>
@@ -314,8 +315,8 @@ const SettingsPage = () => {
                     </div>
 
                     {/* Date of Birth and Present Address */}
-                    <div className="flex space-x-4">
-                      <div className="w-1/2">
+                    <div className="flex flex-col lg:flex-row lg:space-x-4 space-y-4 lg:space-y-0">
+                      <div className="w-full lg:w-1/2">
                         <label className="block text-sm font-medium text-gray-700 mb-1">
                           Date of Birth
                         </label>
@@ -326,7 +327,7 @@ const SettingsPage = () => {
                           defaultValue={user.dateOfBirth}
                         />
                       </div>
-                      <div className="w-1/2">
+                      <div className="w-full lg:w-1/2">
                         <label className="block text-sm font-medium text-gray-700 mb-1">
                           Present Address
                         </label>
@@ -340,8 +341,8 @@ const SettingsPage = () => {
                     </div>
 
                     {/* Permanent Address and City */}
-                    <div className="flex space-x-4">
-                      <div className="w-1/2">
+                    <div className="flex flex-col lg:flex-row lg:space-x-4 space-y-4 lg:space-y-0">
+                      <div className="w-full lg:w-1/2">
                         <label className="block text-sm font-medium text-gray-700 mb-1">
                           Permanent Address
                         </label>
@@ -352,7 +353,7 @@ const SettingsPage = () => {
                           defaultValue={user.permanentAddress}
                         />
                       </div>
-                      <div className="w-1/2">
+                      <div className="w-full lg:w-1/2">
                         <label className="block text-sm font-medium text-gray-700 mb-1">
                           City
                         </label>
@@ -366,8 +367,8 @@ const SettingsPage = () => {
                     </div>
 
                     {/* Postal Code and Country */}
-                    <div className="flex space-x-4">
-                      <div className="w-1/2">
+                    <div className="flex flex-col lg:flex-row lg:space-x-4 space-y-4 lg:space-y-0">
+                      <div className="w-full lg:w-1/2">
                         <label className="block text-sm font-medium text-gray-700 mb-1">
                           Postal Code
                         </label>
@@ -378,7 +379,7 @@ const SettingsPage = () => {
                           defaultValue={user.postalCode}
                         />
                       </div>
-                      <div className="w-1/2">
+                      <div className="w-full lg:w-1/2">
                         <label className="block text-sm font-medium text-gray-700 mb-1">
                           Country
                         </label>
@@ -396,15 +397,15 @@ const SettingsPage = () => {
                       </div>
                     </div>
 
-                    {/* Save Button */}
-                    <div className="flex justify-end pt-4">
+                    {/* Save Button - Full width on mobile, right-aligned on desktop */}
+                    <div className="flex pt-4 w-full">
                       <button
                         type="submit"
                         className={`${
                           isSubmitting
                             ? "bg-gray-400 cursor-not-allowed"
                             : "bg-primary hover:bg-primary-dark"
-                        } text-white py-2 px-6 rounded-lg transition-colors flex items-center`}
+                        } text-white py-2 px-6 rounded-lg transition-colors flex items-center justify-center w-full lg:w-auto lg:ml-auto`}
                         disabled={isSubmitting}
                       >
                         {isSubmitting ? (
