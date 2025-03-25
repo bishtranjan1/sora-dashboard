@@ -133,7 +133,7 @@ const SettingsPage = () => {
           <button
             className={`py-4 px-6 font-medium text-sm ${
               activeTab === "profile"
-                ? "text-primary border-b-2 border-primary"
+                ? "text-black border-b-2 border-black"
                 : "text-gray-500 hover:text-gray-700"
             }`}
             onClick={() => handleTabChange("profile")}
@@ -143,7 +143,7 @@ const SettingsPage = () => {
           <button
             className={`py-4 px-6 font-medium text-sm ${
               activeTab === "preferences"
-                ? "text-primary border-b-2 border-primary"
+                ? "text-black border-b-2 border-black"
                 : "text-gray-500 hover:text-gray-700"
             }`}
             onClick={() => handleTabChange("preferences")}
@@ -153,7 +153,7 @@ const SettingsPage = () => {
           <button
             className={`py-4 px-6 font-medium text-sm ${
               activeTab === "security"
-                ? "text-primary border-b-2 border-primary"
+                ? "text-black border-b-2 border-black"
                 : "text-gray-500 hover:text-gray-700"
             }`}
             onClick={() => handleTabChange("security")}
@@ -404,7 +404,7 @@ const SettingsPage = () => {
                         className={`${
                           isSubmitting
                             ? "bg-gray-400 cursor-not-allowed"
-                            : "bg-primary hover:bg-primary-dark"
+                            : "bg-black hover:bg-gray-800"
                         } text-white py-2 px-6 rounded-lg transition-colors flex items-center justify-center w-full lg:w-auto lg:ml-auto`}
                         disabled={isSubmitting}
                       >

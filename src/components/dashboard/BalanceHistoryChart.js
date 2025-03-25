@@ -146,7 +146,7 @@ const BalanceHistoryChart = ({ initialPeriod = "6m", fixedPeriod = false }) => {
           onClick={() => setPeriod("1w")}
           className={`px-2 py-1 text-xs rounded-md ${
             period === "1w"
-              ? "bg-blue-500 text-white"
+              ? "bg-black text-white"
               : "bg-gray-100 text-gray-700 hover:bg-gray-200"
           }`}
         >
@@ -156,7 +156,7 @@ const BalanceHistoryChart = ({ initialPeriod = "6m", fixedPeriod = false }) => {
           onClick={() => setPeriod("1m")}
           className={`px-2 py-1 text-xs rounded-md ${
             period === "1m"
-              ? "bg-blue-500 text-white"
+              ? "bg-black text-white"
               : "bg-gray-100 text-gray-700 hover:bg-gray-200"
           }`}
         >
@@ -166,7 +166,7 @@ const BalanceHistoryChart = ({ initialPeriod = "6m", fixedPeriod = false }) => {
           onClick={() => setPeriod("6m")}
           className={`px-2 py-1 text-xs rounded-md ${
             period === "6m"
-              ? "bg-blue-500 text-white"
+              ? "bg-black text-white"
               : "bg-gray-100 text-gray-700 hover:bg-gray-200"
           }`}
         >
@@ -176,7 +176,7 @@ const BalanceHistoryChart = ({ initialPeriod = "6m", fixedPeriod = false }) => {
           onClick={() => setPeriod("1y")}
           className={`px-2 py-1 text-xs rounded-md ${
             period === "1y"
-              ? "bg-blue-500 text-white"
+              ? "bg-black text-white"
               : "bg-gray-100 text-gray-700 hover:bg-gray-200"
           }`}
         >

@@ -10,7 +10,7 @@ const TestComponent = () => {
         This component tests whether Tailwind CSS styling is working properly.
       </p>
       <div className="flex justify-between items-center mt-4">
-        <button className="bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark">
+        <button className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800">
           Primary Button
         </button>
         <button className="bg-secondary text-white px-4 py-2 rounded hover:bg-secondary-dark">
