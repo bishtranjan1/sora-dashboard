@@ -8,7 +8,7 @@
       "balance": "12,546.00",
       "cardType": "visa",
       "currency": "$",
-      "backgroundColor": "bg-gradient-to-r from-blue-500 to-purple-500"
+      "backgroundColor": "bg-blue-600"
     },
     {
       "id": "card-2",
@@ -18,7 +18,7 @@
       "balance": "24,350.75",
       "cardType": "amex",
       "currency": "$",
-      "backgroundColor": "bg-gradient-to-r from-green-500 to-teal-500"
+      "backgroundColor": "bg-gray-700"
     },
     {
       "id": "card-3",
@@ -28,7 +28,7 @@
       "balance": "8,720.50",
       "cardType": "mastercard",
       "currency": "$",
-      "backgroundColor": "bg-gradient-to-r from-red-500 to-orange-500"
+      "backgroundColor": "bg-red-600"
     }
   ],
   "status": "success",
