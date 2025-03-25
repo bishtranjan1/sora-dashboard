@@ -1,38 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import ContactCard from "./ContactCard";
 import Button from "../ui/Button";
+import Spinner from "../ui/Spinner";
+import {
+  selectQuickTransfer,
+  selectQuickTransferLoading,
+  selectQuickTransferError,
+  fetchQuickTransfer,
+} from "../../store/slices/dashboardSlice";
 
 const QuickTransfer = () => {
   const [selectedContact, setSelectedContact] = useState(null);
   const [amount, setAmount] = useState("");
 
-  // Sample contacts data
-  const contacts = [
-    {
-      id: 1,
-      name: "Sarah Johnson",
-      role: "Friend",
-      avatar: null,
-    },
-    {
-      id: 2,
-      name: "Mike Chen",
-      role: "Colleague",
-      avatar: null,
-    },
-    {
-      id: 3,
-      name: "Emma Davis",
-      role: "Family",
-      avatar: null,
-    },
-    {
-      id: 4,
-      name: "Alex Kim",
-      role: "Flatmate",
-      avatar: null,
-    },
-  ];
+  const quickTransferData = useSelector(selectQuickTransfer);
+  const isLoading = useSelector(selectQuickTransferLoading);
+  const error = useSelector(selectQuickTransferError);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchQuickTransfer());
+  }, [dispatch]);
 
   const handleContactSelect = (contactId) => {
     setSelectedContact(contactId === selectedContact ? null : contactId);
@@ -62,6 +51,37 @@ const QuickTransfer = () => {
     setSelectedContact(null);
   };
 
+  // Show loading spinner while data is being fetched
+  if (isLoading) {
+    return (
+      <div className="h-full w-full flex items-center justify-center">
+        <Spinner size="lg" />
+      </div>
+    );
+  }
+
+  // Show error state
+  if (error) {
+    return (
+      <div className="h-full flex items-center justify-center">
+        <div className="text-red-500">Error: {error}</div>
+      </div>
+    );
+  }
+
+  // Show empty state
+  if (
+    !quickTransferData ||
+    !quickTransferData.contacts ||
+    quickTransferData.contacts.length === 0
+  ) {
+    return (
+      <div className="h-full flex items-center justify-center">
+        <div className="text-gray-500">No contacts available.</div>
+      </div>
+    );
+  }
+
   return (
     <div className="h-full flex flex-col">
       {/* Title */}
@@ -71,7 +91,7 @@ const QuickTransfer = () => {
 
       {/* Contacts grid */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-4">
-        {contacts.map((contact) => (
+        {quickTransferData.contacts.map((contact) => (
           <ContactCard
             key={contact.id}
             contact={contact}
@@ -84,7 +104,10 @@ const QuickTransfer = () => {
       {/* Transfer form - simplified and compact */}
       <form onSubmit={handleSubmit} className="mt-auto">
         <div className="flex items-center space-x-4">
-          <label htmlFor="amount" className="text-sm font-medium text-gray-700 whitespace-nowrap">
+          <label
+            htmlFor="amount"
+            className="text-sm font-medium text-gray-700 whitespace-nowrap"
+          >
             Write amount:
           </label>
           <div className="relative flex-grow">
