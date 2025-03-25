@@ -1,12 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {
-  fetchCardsData,
-  fetchTransactionsData,
-  fetchWeeklyActivityData,
-  fetchExpenseStatisticsData,
-  fetchQuickTransferData,
-  fetchBalanceHistoryData,
-} from "../../services/api";
+import apiService from "../../services/api";
 
 const initialState = {
   balance: {
@@ -222,7 +215,7 @@ export const {
 export const fetchCards = () => async (dispatch) => {
   try {
     dispatch(setCardsLoading(true));
-    const data = await fetchCardsData();
+    const data = await apiService.fetchCardsData();
     dispatch(setCards(data.cards));
     dispatch(setCardsLoading(false));
   } catch (error) {
@@ -234,7 +227,7 @@ export const fetchCards = () => async (dispatch) => {
 export const fetchTransactions = () => async (dispatch) => {
   try {
     dispatch(setTransactionsLoading(true));
-    const data = await fetchTransactionsData();
+    const data = await apiService.fetchTransactionsData();
     dispatch(setTransactions(data.transactions));
     dispatch(setTransactionsLoading(false));
   } catch (error) {
@@ -246,7 +239,7 @@ export const fetchTransactions = () => async (dispatch) => {
 export const fetchWeeklyActivity = () => async (dispatch) => {
   try {
     dispatch(setWeeklyActivityLoading(true));
-    const data = await fetchWeeklyActivityData();
+    const data = await apiService.fetchWeeklyActivityData();
     dispatch(setWeeklyActivity(data.weeklyActivity));
     dispatch(setWeeklyActivityLoading(false));
   } catch (error) {
@@ -258,7 +251,7 @@ export const fetchWeeklyActivity = () => async (dispatch) => {
 export const fetchExpenseStatistics = () => async (dispatch) => {
   try {
     dispatch(setExpenseStatisticsLoading(true));
-    const data = await fetchExpenseStatisticsData();
+    const data = await apiService.fetchExpenseStatisticsData();
     dispatch(setExpenseStatistics(data.expenseStatistics));
     dispatch(setExpenseStatisticsLoading(false));
   } catch (error) {
@@ -270,7 +263,7 @@ export const fetchExpenseStatistics = () => async (dispatch) => {
 export const fetchQuickTransfer = () => async (dispatch) => {
   try {
     dispatch(setQuickTransferLoading(true));
-    const data = await fetchQuickTransferData();
+    const data = await apiService.fetchQuickTransferData();
     dispatch(setQuickTransfer(data.quickTransfer));
     dispatch(setQuickTransferLoading(false));
   } catch (error) {
@@ -282,7 +275,7 @@ export const fetchQuickTransfer = () => async (dispatch) => {
 export const fetchBalanceHistory = () => async (dispatch) => {
   try {
     dispatch(setBalanceHistoryLoading(true));
-    const data = await fetchBalanceHistoryData();
+    const data = await apiService.fetchBalanceHistoryData();
     dispatch(setBalanceHistory(data.balanceHistory));
     dispatch(setBalanceHistoryLoading(false));
   } catch (error) {
