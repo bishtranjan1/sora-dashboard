@@ -1,9 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import CardItem from "./CardItem";
-import { useEffect, useState } from "react";
+import {
+  fetchCards,
+  selectCards,
+  selectDashboardLoading,
+  selectDashboardError,
+} from "../../store/slices/dashboardSlice";
 
 const MyCards = () => {
+  const dispatch = useDispatch();
+  const cards = useSelector(selectCards);
+  const isLoading = useSelector(selectDashboardLoading);
+  const error = useSelector(selectDashboardError);
   const [isMobile, setIsMobile] = useState(false);
+
+  // Fetch cards data from API on component mount
+  useEffect(() => {
+    dispatch(fetchCards());
+  }, [dispatch]);
 
   // Check if device is mobile on initial render and when window is resized
   useEffect(() => {
@@ -21,30 +36,35 @@ const MyCards = () => {
     return () => window.removeEventListener("resize", checkIsMobile);
   }, []);
 
-  // Sample cards data with one regular credit card and one Amex black card
-  const cardsData = [
-    {
-      id: 1,
-      cardNumber: "4111111111111234",
-      cardholderName: "John Doe",
-      expiryDate: "09/25",
-      balance: "12,546.00",
-      cardType: "visa",
-      backgroundColor: "bg-gradient-to-r from-blue-500 to-purple-500", // colorful credit card
-    },
-    {
-      id: 2,
-      cardNumber: "3782822463100005",
-      cardholderName: "John Doe",
-      expiryDate: "12/24",
-      balance: "24,350.75",
-      cardType: "amex",
-      backgroundColor: "bg-gradient-to-r from-zinc-800 via-black to-zinc-700", // premium metal black Amex card with more visible gradient
-    },
-  ];
-
   // On mobile, display only the first card, on desktop display all cards
-  const displayCards = isMobile ? cardsData.slice(0, 1) : cardsData;
+  const displayCards = isMobile ? cards.slice(0, 1) : cards;
+
+  // Show loading state
+  if (isLoading) {
+    return (
+      <div className="h-full flex items-center justify-center">
+        <div className="animate-pulse text-gray-500">Loading cards...</div>
+      </div>
+    );
+  }
+
+  // Show error state
+  if (error) {
+    return (
+      <div className="h-full flex items-center justify-center">
+        <div className="text-red-500">Error: {error}</div>
+      </div>
+    );
+  }
+
+  // Show empty state
+  if (!cards || cards.length === 0) {
+    return (
+      <div className="h-full flex items-center justify-center">
+        <div className="text-gray-500">No cards available.</div>
+      </div>
+    );
+  }
 
   return (
     <div className="h-full">

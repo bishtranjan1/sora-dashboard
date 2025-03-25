@@ -1,0 +1,36 @@
+{
+  "cards": [
+    {
+      "id": "card-1",
+      "cardNumber": "4111111111111234",
+      "cardholderName": "John Doe",
+      "expiryDate": "09/25",
+      "balance": "12,546.00",
+      "cardType": "visa",
+      "currency": "$",
+      "backgroundColor": "bg-gradient-to-r from-blue-500 to-purple-500"
+    },
+    {
+      "id": "card-2",
+      "cardNumber": "3782822463100005",
+      "cardholderName": "John Doe",
+      "expiryDate": "12/24",
+      "balance": "24,350.75",
+      "cardType": "amex",
+      "currency": "$",
+      "backgroundColor": "bg-gradient-to-r from-zinc-800 via-black to-zinc-700"
+    },
+    {
+      "id": "card-3",
+      "cardNumber": "5555555555554444",
+      "cardholderName": "John Doe",
+      "expiryDate": "03/26",
+      "balance": "8,720.50",
+      "cardType": "mastercard",
+      "currency": "$",
+      "backgroundColor": "bg-gradient-to-r from-red-500 to-orange-500"
+    }
+  ],
+  "status": "success",
+  "timestamp": "2023-09-20T10:15:30Z"
+}

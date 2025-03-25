@@ -254,6 +254,9 @@ export const dashboardSlice = createSlice({
       state.error = action.payload;
       state.isLoading = false;
     },
+    setCards: (state, action) => {
+      state.cards = action.payload;
+    },
   },
 });
 
@@ -273,7 +276,24 @@ export const {
   updateTransferLimits,
   setLoading,
   setError,
+  setCards,
 } = dashboardSlice.actions;
+
+// Async thunk action to fetch cards from API
+export const fetchCards = () => async (dispatch) => {
+  try {
+    dispatch(setLoading(true));
+    const response = await fetch("/api/cardsdata.json");
+    if (!response.ok) {
+      throw new Error("Failed to fetch card data");
+    }
+    const data = await response.json();
+    dispatch(setCards(data.cards));
+    dispatch(setLoading(false));
+  } catch (error) {
+    dispatch(setError(error.message));
+  }
+};
 
 // Selectors
 export const selectBalance = (state) => state.dashboard.balance;
