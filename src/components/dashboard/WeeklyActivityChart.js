@@ -140,11 +140,11 @@ const WeeklyActivityChart = ({ period = "This Week" }) => {
   const labels = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
   const chartData = weeklyActivity.chartData || {};
 
-  // Use current or last week data based on period prop
+  // Use this week or last week data based on period prop
   const activityData =
     period === "Last Week"
       ? chartData.lastWeek || { deposits: [], withdrawals: [] }
-      : chartData.currentWeek || { deposits: [], withdrawals: [] };
+      : chartData.thisWeek || { deposits: [], withdrawals: [] };
 
   const data = {
     labels,
