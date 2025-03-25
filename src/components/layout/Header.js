@@ -27,7 +27,7 @@ const Header = () => {
       case "privileges":
         return "Premium Privileges";
       case "settings":
-        return "Account Settings";
+        return "Settings";
       default:
         return "Overview";
     }
