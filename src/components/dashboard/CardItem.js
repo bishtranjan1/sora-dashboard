@@ -1,5 +1,6 @@
 import React from "react";
 import "./CardBackgrounds.css"; // Import to prevent Tailwind from purging the classes
+import Icon from "../../utils/icons";
 
 const CardItem = ({ cardData, isActive }) => {
   // Destructure card properties
@@ -25,16 +26,15 @@ const CardItem = ({ cardData, isActive }) => {
 
   // Get card type logo
   const getCardLogo = () => {
-    switch (cardType?.toLowerCase()) {
-      case "visa":
-        return "VISA";
-      case "mastercard":
-        return "MasterCard";
-      case "amex":
-        return "AMEX";
-      default:
-        return "💳";
+    const type = cardType?.toLowerCase();
+
+    // Return the appropriate icon component
+    if (type === "visa" || type === "mastercard" || type === "amex") {
+      return <Icon name={type} size={32} color="#FFFFFF" />;
     }
+
+    // Default fallback
+    return "💳";
   };
 
   const logo = getCardLogo();
@@ -80,7 +80,9 @@ const CardItem = ({ cardData, isActive }) => {
       </div>
 
       {/* Card chip element */}
-      <div className="absolute right-5 top-8 w-7 h-7 rounded-md bg-yellow-300/70 z-10"></div>
+      <div className="absolute right-5 top-8 z-10">
+        <Icon name="chip" size={28} color="#FFD700" />
+      </div>
     </div>
   );
 };

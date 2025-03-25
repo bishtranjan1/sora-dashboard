@@ -1,17 +1,13 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  ArrowTrendingUpIcon,
-  ArrowTrendingDownIcon,
-  ArrowPathIcon,
-} from "@heroicons/react/24/outline";
-import {
   selectTransactions,
   selectTransactionsLoading,
   selectTransactionsError,
   fetchTransactions,
 } from "../../store/slices/dashboardSlice";
 import Spinner from "../ui/Spinner";
+import Icon from "../../utils/icons";
 
 const RecentTransactions = () => {
   const dispatch = useDispatch();
@@ -31,19 +27,19 @@ const RecentTransactions = () => {
       case "income":
         return (
           <div className="rounded-full p-2 bg-green-100">
-            <ArrowTrendingUpIcon className="h-5 w-5 text-green-600" />
+            <Icon name="arrowUp" size={20} color="#16a34a" />
           </div>
         );
       case "expense":
         return (
           <div className="rounded-full p-2 bg-red-100">
-            <ArrowTrendingDownIcon className="h-5 w-5 text-red-600" />
+            <Icon name="arrowDown" size={20} color="#dc2626" />
           </div>
         );
       case "transfer":
         return (
           <div className="rounded-full p-2 bg-blue-100">
-            <ArrowPathIcon className="h-5 w-5 text-blue-600" />
+            <Icon name="transfer" size={20} color="#2563eb" />
           </div>
         );
       default:
