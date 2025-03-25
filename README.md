@@ -76,53 +76,53 @@ The project follows a structured approach to organize code for better maintainab
 
 ```
 sora-dashboard/
-├── public/                    # Public assets and index.html
-│   ├── api/                   # Mock API JSON data files
-│   │   ├── cardsdata.json     # Credit card data
-│   │   ├── transactionsdata.json  # Transaction data
-│   │   ├── weeklyactivitydata.json # Weekly activity charts
-│   │   ├── expensestatisticsdata.json # Expense statistics
-│   │   ├── quicktransferdata.json # Quick transfer data
-│   │   └── balancehistorydata.json # Balance history data
-│   ├── index.html             # Main HTML file
-│   └── ...                    # Other public assets
+├── public/                               # Public assets and index.html
+│   ├── api/                              # Mock API JSON data files
+│   │   ├── cardsdata.json                # Credit card data
+│   │   ├── transactionsdata.json         # Transaction data
+│   │   ├── weeklyactivitydata.json       # Weekly activity charts
+│   │   ├── expensestatisticsdata.json    # Expense statistics
+│   │   ├── quicktransferdata.json        # Quick transfer data
+│   │   └── balancehistorydata.json       # Balance history data
+│   ├── index.html                        # Main HTML file
+│   └── ...                               # Other public assets
 ├── src/
-│   ├── components/            # Reusable UI components
-│   │   ├── dashboard/         # Dashboard-specific components
-│   │   │   ├── BalanceHistoryChart.js  # Balance history visualization
-│   │   │   ├── CardItem.js    # Individual card component
+│   ├── components/                       # Reusable UI components
+│   │   ├── dashboard/                    # Dashboard-specific components
+│   │   │   ├── BalanceHistoryChart.js    # Balance history visualization
+│   │   │   ├── CardItem.js               # Individual card component
 │   │   │   ├── ExpenseStatisticsChart.js # Expense statistics chart
-│   │   │   ├── MyCards.js     # Cards container component
-│   │   │   ├── QuickTransfer.js # Quick transfer component
-│   │   │   ├── RecentTransactions.js # Recent transactions component
-│   │   │   └── WeeklyActivityChart.js # Weekly activity chart
-│   │   ├── layout/            # Layout components
-│   │   │   ├── DashboardLayout.js # Main dashboard layout
-│   │   │   ├── Header.js      # App header component
-│   │   │   └── Sidebar.js     # Navigation sidebar
-│   │   └── ui/                # Generic UI components
-│   │       ├── Button.js      # Reusable button component
-│   │       ├── Card.js        # Card container component
-│   │       └── ...            # Other UI components
-│   ├── pages/                 # Page components for different routes
-│   │   ├── Dashboard.js       # Main dashboard page
-│   │   ├── Settings.js        # User settings page
-│   │   ├── Transactions.js    # Transactions page
-│   │   └── ...                # Other pages
-│   ├── services/              # API and service functions
-│   │   └── api.js             # API service functions
-│   ├── store/                 # Redux store configuration
-│   │   ├── index.js           # Store configuration
-│   │   └── slices/            # Redux slices
-│   │       ├── dashboardSlice.js # Dashboard data management
-│   │       ├── userSlice.js   # User data management
-│   │       └── settingsSlice.js # Settings management
-│   ├── utils/                 # Utility functions
-│   ├── App.js                 # Main App component
-│   ├── index.js               # Application entry point
-│   └── index.css              # Global styles
-├── package.json               # Dependencies and scripts
-└── README.md                  # Project documentation
+│   │   │   ├── MyCards.js                # Cards container component
+│   │   │   ├── QuickTransfer.js          # Quick transfer component
+│   │   │   ├── RecentTransactions.js     # Recent transactions component
+│   │   │   └── WeeklyActivityChart.js    # Weekly activity chart
+│   │   ├── layout/                       # Layout components
+│   │   │   ├── DashboardLayout.js        # Main dashboard layout
+│   │   │   ├── Header.js                 # App header component
+│   │   │   └── Sidebar.js                # Navigation sidebar
+│   │   └── ui/                           # Generic UI components
+│   │       ├── Button.js                 # Reusable button component
+│   │       ├── Card.js                   # Card container component
+│   │       └── ...                       # Other UI components
+│   ├── pages/                            # Page components for different routes
+│   │   ├── Dashboard.js                  # Main dashboard page
+│   │   ├── Settings.js                   # User settings page
+│   │   ├── Transactions.js               # Transactions page
+│   │   └── ...                           # Other pages
+│   ├── services/                         # API and service functions
+│   │   └── api.js                        # API service functions
+│   ├── store/                            # Redux store configuration
+│   │   ├── index.js                      # Store configuration
+│   │   └── slices/                       # Redux slices
+│   │       ├── dashboardSlice.js         # Dashboard data management
+│   │       ├── userSlice.js              # User data management
+│   │       └── settingsSlice.js          # Settings management
+│   ├── utils/                            # Utility functions
+│   ├── App.js                            # Main App component
+│   ├── index.js                          # Application entry point
+│   └── index.css                         # Global styles
+├── package.json                          # Dependencies and scripts
+└── README.md                             # Project documentation
 ```
 
 ## Application Architecture
