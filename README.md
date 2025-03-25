@@ -14,6 +14,8 @@ The application is deployed and available at: [https://financial-dashboard-51023
 - **Responsive Design**: Fully responsive layout that works on desktop, tablet, and mobile devices
 - **User Settings**: Customizable user profile and application settings
 - **Interactive Charts**: Data visualization using Chart.js
+- **Optimized Performance**: Code-splitting with React.lazy and Suspense for improved loading times
+- **Dynamic Data Fetching**: Redux integration for efficient state management and API communication
 
 ## Technologies Used
 
@@ -22,6 +24,7 @@ The application is deployed and available at: [https://financial-dashboard-51023
 - **Routing**: React Router
 - **Styling**: Tailwind CSS
 - **Charts**: Chart.js with React-ChartJS-2
+- **Performance**: React.lazy and Suspense for code-splitting
 - **Icons**: Heroicons
 - **Deployment**: Firebase Hosting
 
@@ -70,6 +73,16 @@ The dashboard is designed to work across multiple device sizes:
 - **Tablet**: Adapted layout with optimized space usage
 - **Mobile**: Streamlined interface with hamburger menu navigation
 
+## Performance Optimizations
+
+The application implements several performance optimizations:
+
+- **Code Splitting**: Components are lazily loaded using React.lazy to reduce initial bundle size
+- **Suspense Boundaries**: React Suspense is used to show appropriate loading states during component loading
+- **Redux Selectors**: Efficient data access through memoized selectors
+- **Loading States**: Consistent loading indicators for improved user experience
+- **Route-Based Splitting**: Primary code-splitting at the route level for optimal performance
+
 ## Project Structure
 
 The project follows a structured approach to organize code for better maintainability and scalability:
@@ -91,6 +104,7 @@ sora-dashboard/
 │   │   ├── dashboard/                    # Dashboard-specific components
 │   │   │   ├── BalanceHistoryChart.js    # Balance history visualization
 │   │   │   ├── CardItem.js               # Individual card component
+│   │   │   ├── CardSkeleton.js           # Skeleton loading for cards
 │   │   │   ├── ExpenseStatisticsChart.js # Expense statistics chart
 │   │   │   ├── MyCards.js                # Cards container component
 │   │   │   ├── QuickTransfer.js          # Quick transfer component
@@ -103,9 +117,10 @@ sora-dashboard/
 │   │   └── ui/                           # Generic UI components
 │   │       ├── Button.js                 # Reusable button component
 │   │       ├── Card.js                   # Card container component
+│   │       ├── Spinner.js                # Loading spinner component
 │   │       └── ...                       # Other UI components
 │   ├── pages/                            # Page components for different routes
-│   │   ├── Dashboard.js                  # Main dashboard page
+│   │   ├── Dashboard.js                  # Main dashboard page with lazy loading
 │   │   ├── Settings.js                   # User settings page
 │   │   ├── Transactions.js               # Transactions page
 │   │   └── ...                           # Other pages
@@ -136,6 +151,26 @@ The application follows a unidirectional data flow pattern:
 3. **State Update**: Redux reducers update the state
 4. **Re-render**: Components connected to that state re-render
 
+### Performance Architecture
+
+The application uses React's performance features effectively:
+
+1. **Code Splitting Strategy**:
+
+   - Primary splitting at route level (Dashboard, Settings, etc.)
+   - Secondary splitting for heavy components within each route
+
+2. **Loading State Management**:
+
+   - Spinner component used consistently across the application
+   - Redux loading states for data-driven components
+   - React Suspense for component-level loading
+
+3. **Data Fetching Strategy**:
+   - Centralized data fetching in Dashboard component
+   - Individual components dispatch their own fetch actions when needed
+   - Loading indicators tied to Redux loading states
+
 ### API Integration
 
 The application uses a modular approach for API integration:
@@ -162,7 +197,7 @@ Components follow a hierarchy for better organization:
 1. **Layout Components**: Define the overall structure (Sidebar, Header)
 2. **Page Components**: Represent different routes and organize dashboard widgets
 3. **Feature Components**: Dashboard-specific components (MyCards, RecentTransactions)
-4. **UI Components**: Generic, reusable UI elements (Button, Card)
+4. **UI Components**: Generic, reusable UI elements (Button, Card, Spinner)
 
 ### State Management
 
