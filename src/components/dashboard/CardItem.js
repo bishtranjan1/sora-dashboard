@@ -55,7 +55,7 @@ const CardItem = ({ cardData, isActive = false }) => {
   return (
     <div
       className={`relative rounded-xl overflow-hidden p-5 flex flex-col justify-between
-        ${bgClass} ${isActive ? "ring-1 ring-primary" : ""}
+        ${bgClass} 
         cursor-pointer transition-all duration-300 hover:shadow-lg`}
       style={{
         height: "180px", // Fixed height for all cards

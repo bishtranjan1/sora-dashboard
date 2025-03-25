@@ -59,10 +59,7 @@ const RecentTransactions = () => {
     <div className="h-full">
       <div className="space-y-3">
         {transactions.map((transaction) => (
-          <div
-            key={transaction.id}
-            className="flex items-center p-2.5 bg-white rounded-lg hover:bg-gray-50 transition-colors duration-150 border border-gray-100"
-          >
+          <div key={transaction.id} className="flex items-center p-2.5">
             <div className="flex-shrink-0 mr-3">
               {getTransactionIcon(transaction.type)}
             </div>

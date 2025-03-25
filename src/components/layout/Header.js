@@ -17,15 +17,15 @@ const Header = () => {
       case "accounts":
         return "Accounts";
       case "investments":
-        return "Investment Portfolio";
+        return "Investments";
       case "credit-cards":
         return "Credit Cards";
       case "loans":
-        return "Loan Management";
+        return "Loans";
       case "services":
-        return "Banking Services";
+        return "Services";
       case "privileges":
-        return "Premium Privileges";
+        return "Privileges";
       case "settings":
         return "Settings";
       default:
