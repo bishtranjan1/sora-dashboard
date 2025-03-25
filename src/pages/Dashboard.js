@@ -27,7 +27,7 @@ const Dashboard = () => {
     </Link>
   );
 
-  // Set consistent heights for each row
+  // Set consistent heights for each row on desktop
   const rowHeight = "320px";
 
   return (
@@ -48,7 +48,7 @@ const Dashboard = () => {
           <Card
             title="Recent Transactions"
             className="h-full"
-            height={rowHeight}
+            height={{ default: "auto", lg: rowHeight }}
             scrollContent={true} // Enable vertical scrolling
           >
             <RecentTransactions />
@@ -80,8 +80,8 @@ const Dashboard = () => {
           <Card
             title="Quick Transfer"
             className="h-full"
-            height={rowHeight}
-            scrollContent={false} // Enable vertical scrolling if needed
+            height={{ default: "auto", lg: rowHeight }}
+            scrollContent={true} // Enable vertical scrolling for overflow content
           >
             <QuickTransfer />
           </Card>
