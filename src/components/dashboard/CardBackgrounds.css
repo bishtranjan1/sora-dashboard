@@ -1,0 +1,9 @@
+/* 
+ * This file is used to ensure Tailwind doesn't purge dynamic card background classes 
+ * during production builds.
+ */
+
+/* Card background classes */
+.card-bg-classes {
+  @apply bg-blue-600 bg-gray-700 bg-red-600;
+}

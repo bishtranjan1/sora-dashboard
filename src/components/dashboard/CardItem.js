@@ -1,6 +1,7 @@
 import React from "react";
+import "./CardBackgrounds.css"; // Import to prevent Tailwind from purging the classes
 
-const CardItem = ({ cardData, isActive = false }) => {
+const CardItem = ({ cardData, isActive }) => {
   // Destructure card properties
   const {
     cardNumber,
@@ -12,19 +13,12 @@ const CardItem = ({ cardData, isActive = false }) => {
     backgroundColor,
   } = cardData;
 
-  // Format card number to show only first and last 4 digits
-  const formatCardNumber = (cardNumber) => {
-    if (!cardNumber || cardNumber.length < 8) return "•••• •••• •••• ••••";
-
-    const first4 = cardNumber.slice(0, 4);
-    const last4 = cardNumber.slice(-4);
-    const middleLength = cardNumber.length - 8;
-    const middleStars = "•".repeat(middleLength);
-
-    return `${first4} ${middleStars.slice(0, 4)} ${middleStars.slice(
-      4,
-      8
-    )} ${last4}`;
+  // Format card number to hide middle digits
+  const formatCardNumber = (number) => {
+    if (!number) return "";
+    const last4 = number.slice(-4);
+    const first4 = number.slice(0, 4);
+    return `${first4} **** **** ${last4}`;
   };
 
   const formattedCardNumber = formatCardNumber(cardNumber);
@@ -46,8 +40,8 @@ const CardItem = ({ cardData, isActive = false }) => {
   const logo = getCardLogo();
 
   // Use the backgroundColor prop if provided, otherwise fallback to the default
-  const bgClass =
-    backgroundColor || `bg-gradient-to-r from-blue-400 to-blue-600`;
+  // We now handle both CSS class names and inline style backgrounds
+  const bgClass = backgroundColor || `bg-blue-600`;
 
   return (
     <div
