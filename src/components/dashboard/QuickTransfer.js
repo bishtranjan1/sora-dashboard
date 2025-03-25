@@ -63,9 +63,14 @@ const QuickTransfer = () => {
   };
 
   return (
-    <div className="flex flex-col space-y-4 h-full justify-between">
-      {/* Contacts row - reduced margin */}
-      <div className="grid grid-cols-4 gap-2">
+    <div className="h-full flex flex-col">
+      {/* Title */}
+      <h4 className="text-sm font-medium text-gray-700 mb-2">
+        Select contact:
+      </h4>
+
+      {/* Contacts grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-4">
         {contacts.map((contact) => (
           <ContactCard
             key={contact.id}
@@ -76,14 +81,11 @@ const QuickTransfer = () => {
         ))}
       </div>
 
-      {/* Transfer form - single line with no extra space */}
-      <form onSubmit={handleSubmit} className="w-full">
-        <div className="flex items-center space-x-2">
-          <label
-            htmlFor="amount"
-            className="text-sm font-medium text-gray-700 whitespace-nowrap"
-          >
-            Write Amount:
+      {/* Transfer form - simplified and compact */}
+      <form onSubmit={handleSubmit} className="mt-auto">
+        <div className="flex items-center space-x-4">
+          <label htmlFor="amount" className="text-sm font-medium text-gray-700 whitespace-nowrap">
+            Write amount:
           </label>
           <div className="relative flex-grow">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -103,22 +105,8 @@ const QuickTransfer = () => {
             type="submit"
             variant="primary"
             disabled={!selectedContact || !amount || parseFloat(amount) <= 0}
-            className="whitespace-nowrap"
+            className="whitespace-nowrap px-6"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 mr-1"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
-              />
-            </svg>
             Send
           </Button>
         </div>

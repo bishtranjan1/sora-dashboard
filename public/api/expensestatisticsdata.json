@@ -1,0 +1,36 @@
+{
+  "expenseStatistics": {
+    "totalExpenses": 2350.75,
+    "changePercentage": 15.2,
+    "currency": "USD",
+    "categories": [
+      {
+        "name": "Entertainment",
+        "percentage": 30,
+        "color": "rgba(79, 70, 229, 1)"
+      },
+      {
+        "name": "Bill expense",
+        "percentage": 15,
+        "color": "rgba(244, 63, 94, 1)"
+      },
+      {
+        "name": "Investment",
+        "percentage": 20,
+        "color": "rgba(16, 185, 129, 1)"
+      },
+      {
+        "name": "Others",
+        "percentage": 35,
+        "color": "rgba(245, 158, 11, 1)"
+      }
+    ],
+    "monthlyComparison": {
+      "currentMonth": 2350.75,
+      "previousMonth": 2050.2,
+      "changeAmount": 300.55
+    }
+  },
+  "status": "success",
+  "timestamp": "2023-09-20T10:15:30Z"
+}

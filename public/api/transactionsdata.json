@@ -1,0 +1,86 @@
+{
+  "transactions": [
+    {
+      "id": 1,
+      "description": "Salary Deposit",
+      "amount": 2850.0,
+      "date": "2023-07-01",
+      "category": "Income",
+      "type": "income"
+    },
+    {
+      "id": 2,
+      "description": "Apartment Rent",
+      "amount": -1400.0,
+      "date": "2023-07-03",
+      "category": "Housing",
+      "type": "expense"
+    },
+    {
+      "id": 3,
+      "description": "Grocery Shopping",
+      "amount": -120.5,
+      "date": "2023-07-05",
+      "category": "Groceries",
+      "type": "expense"
+    },
+    {
+      "id": 4,
+      "description": "Freelance Payment",
+      "amount": 450.0,
+      "date": "2023-07-07",
+      "category": "Income",
+      "type": "income"
+    },
+    {
+      "id": 5,
+      "description": "Transfer to Savings",
+      "amount": -500.0,
+      "date": "2023-07-10",
+      "category": "Transfer",
+      "type": "transfer"
+    },
+    {
+      "id": 6,
+      "description": "Coffee Subscription",
+      "amount": -25.0,
+      "date": "2023-07-12",
+      "category": "Food & Drink",
+      "type": "expense"
+    },
+    {
+      "id": 7,
+      "description": "Online Course",
+      "amount": -199.99,
+      "date": "2023-07-15",
+      "category": "Education",
+      "type": "expense"
+    },
+    {
+      "id": 8,
+      "description": "Dividend Payment",
+      "amount": 87.33,
+      "date": "2023-07-18",
+      "category": "Investment",
+      "type": "income"
+    },
+    {
+      "id": 9,
+      "description": "Utility Bills Payment",
+      "amount": -135.65,
+      "date": "2023-07-20",
+      "category": "Utilities",
+      "type": "expense"
+    },
+    {
+      "id": 10,
+      "description": "Restaurant Dinner",
+      "amount": -78.42,
+      "date": "2023-07-22",
+      "category": "Dining",
+      "type": "expense"
+    }
+  ],
+  "status": "success",
+  "timestamp": "2023-09-20T10:15:30Z"
+}

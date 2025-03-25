@@ -1,23 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import CardItem from "./CardItem";
 import {
-  fetchCards,
   selectCards,
-  selectDashboardLoading,
-  selectDashboardError,
+  selectCardsLoading,
+  selectCardsError,
 } from "../../store/slices/dashboardSlice";
 
 const MyCards = () => {
-  const dispatch = useDispatch();
   const cards = useSelector(selectCards);
-  const isLoading = useSelector(selectDashboardLoading);
-  const error = useSelector(selectDashboardError);
-
-  // Fetch cards data from API on component mount
-  useEffect(() => {
-    dispatch(fetchCards());
-  }, [dispatch]);
+  const isLoading = useSelector(selectCardsLoading);
+  const error = useSelector(selectCardsError);
 
   // Show loading state
   if (isLoading) {
@@ -43,7 +36,7 @@ const MyCards = () => {
       <div className="h-full flex items-center justify-center">
         <div className="text-gray-500">No cards available.</div>
       </div>
-    ); 
+    );
   }
 
   return (

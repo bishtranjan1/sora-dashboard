@@ -1,0 +1,89 @@
+{
+  "quickTransfer": {
+    "recentRecipients": [
+      {
+        "id": "user1",
+        "name": "Sarah Johnson",
+        "avatar": null,
+        "email": "sarah.j@example.com"
+      },
+      {
+        "id": "user2",
+        "name": "Michael Brown",
+        "avatar": null,
+        "email": "michael.b@example.com"
+      },
+      {
+        "id": "user3",
+        "name": "Emily Davis",
+        "avatar": null,
+        "email": "emily.d@example.com"
+      },
+      {
+        "id": "user4",
+        "name": "Robert Wilson",
+        "avatar": null,
+        "email": "robert.w@example.com"
+      }
+    ],
+    "savedAccounts": [
+      {
+        "id": "acc1",
+        "name": "Sarah Johnson",
+        "bank": "Chase",
+        "accountNumber": "****5678",
+        "avatar": null
+      },
+      {
+        "id": "acc2",
+        "name": "Michael Brown",
+        "bank": "Bank of America",
+        "accountNumber": "****4321",
+        "avatar": null
+      },
+      {
+        "id": "acc3",
+        "name": "Emily Davis",
+        "bank": "Wells Fargo",
+        "accountNumber": "****9876",
+        "avatar": null
+      }
+    ],
+    "transferLimits": {
+      "daily": 5000,
+      "monthly": 50000,
+      "remaining": {
+        "daily": 3250,
+        "monthly": 32500
+      }
+    },
+    "contacts": [
+      {
+        "id": 1,
+        "name": "Sarah Johnson",
+        "role": "Friend",
+        "avatar": null
+      },
+      {
+        "id": 2,
+        "name": "Mike Chen",
+        "role": "Colleague",
+        "avatar": null
+      },
+      {
+        "id": 3,
+        "name": "Emma Davis",
+        "role": "Family",
+        "avatar": null
+      },
+      {
+        "id": 4,
+        "name": "Alex Kim",
+        "role": "Flatmate",
+        "avatar": null
+      }
+    ]
+  },
+  "status": "success",
+  "timestamp": "2023-09-20T10:15:30Z"
+}

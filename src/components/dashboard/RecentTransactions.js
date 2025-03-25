@@ -1,12 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
+import { useSelector } from "react-redux";
 import {
   ArrowTrendingUpIcon,
   ArrowTrendingDownIcon,
   ArrowPathIcon,
 } from "@heroicons/react/24/outline";
+import {
+  selectTransactions,
+  selectTransactionsLoading,
+  selectTransactionsError,
+} from "../../store/slices/dashboardSlice";
 
 const RecentTransactions = () => {
-  const [transactions] = useState(SAMPLE_TRANSACTIONS);
+  const transactions = useSelector(selectTransactions);
+  const isLoading = useSelector(selectTransactionsLoading);
+  const error = useSelector(selectTransactionsError);
 
   const getTransactionIcon = (type) => {
     switch (type) {
@@ -55,6 +63,35 @@ const RecentTransactions = () => {
     }).format(date);
   };
 
+  // Show loading state
+  if (isLoading) {
+    return (
+      <div className="h-full flex items-center justify-center">
+        <div className="animate-pulse text-gray-500">
+          Loading transactions...
+        </div>
+      </div>
+    );
+  }
+
+  // Show error state
+  if (error) {
+    return (
+      <div className="h-full flex items-center justify-center">
+        <div className="text-red-500">Error: {error}</div>
+      </div>
+    );
+  }
+
+  // Show empty state
+  if (!transactions || transactions.length === 0) {
+    return (
+      <div className="h-full flex items-center justify-center">
+        <div className="text-gray-500">No transactions available.</div>
+      </div>
+    );
+  }
+
   return (
     <div className="h-full">
       <div className="space-y-3">
@@ -82,73 +119,5 @@ const RecentTransactions = () => {
     </div>
   );
 };
-
-// Sample transaction data
-const SAMPLE_TRANSACTIONS = [
-  {
-    id: 1,
-    description: "Salary Deposit",
-    amount: 2850.0,
-    date: "2023-07-01",
-    category: "Income",
-    type: "income",
-  },
-  {
-    id: 2,
-    description: "Apartment Rent",
-    amount: -1400.0,
-    date: "2023-07-03",
-    category: "Housing",
-    type: "expense",
-  },
-  {
-    id: 3,
-    description: "Grocery Shopping",
-    amount: -120.5,
-    date: "2023-07-05",
-    category: "Groceries",
-    type: "expense",
-  },
-  {
-    id: 4,
-    description: "Freelance Payment",
-    amount: 450.0,
-    date: "2023-07-07",
-    category: "Income",
-    type: "income",
-  },
-  {
-    id: 5,
-    description: "Transfer to Savings",
-    amount: -500.0,
-    date: "2023-07-10",
-    category: "Transfer",
-    type: "transfer",
-  },
-  {
-    id: 6,
-    description: "Coffee Subscription",
-    amount: -25.0,
-    date: "2023-07-12",
-    category: "Food & Drink",
-    type: "expense",
-  },
-  {
-    id: 7,
-    description: "Online Course",
-    amount: -199.99,
-    date: "2023-07-15",
-    category: "Education",
-    type: "expense",
-  },
-  {
-    id: 8,
-    description: "Dividend Payment",
-    amount: 87.33,
-    date: "2023-07-18",
-    category: "Investment",
-    type: "income",
-  },
-];
 
 export default RecentTransactions;

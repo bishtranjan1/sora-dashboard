@@ -1,0 +1,42 @@
+{
+  "balanceHistory": {
+    "currentBalance": 6200,
+    "changePercentage": 12.5,
+    "currency": "USD",
+    "periodData": {
+      "1w": {
+        "labels": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+        "values": [3200, 3400, 3300, 5200, 4800, 4000, 4500]
+      },
+      "1m": {
+        "labels": ["Week 1", "Week 2", "Week 3", "Week 4"],
+        "values": [3200, 3800, 5000, 4500]
+      },
+      "6m": {
+        "labels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+        "values": [3200, 3400, 3800, 4200, 4800, 5200]
+      },
+      "1y": {
+        "labels": [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec"
+        ],
+        "values": [
+          3200, 3400, 3600, 4000, 4200, 4800, 5200, 5400, 5200, 5600, 6000, 6200
+        ]
+      }
+    }
+  },
+  "status": "success",
+  "timestamp": "2023-09-20T10:15:30Z"
+}

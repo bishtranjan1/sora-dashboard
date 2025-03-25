@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import Card from "../components/ui/Card";
 import BalanceHistoryChart from "../components/dashboard/BalanceHistoryChart";
 import ExpenseStatisticsChart from "../components/dashboard/ExpenseStatisticsChart";
@@ -7,8 +8,16 @@ import RecentTransactions from "../components/dashboard/RecentTransactions";
 import WeeklyActivityChart from "../components/dashboard/WeeklyActivityChart";
 import QuickTransfer from "../components/dashboard/QuickTransfer";
 import { Link } from "react-router-dom";
+import { fetchAllDashboardData } from "../store/slices/dashboardSlice";
 
 const Dashboard = () => {
+  const dispatch = useDispatch();
+
+  // Fetch all dashboard data on component mount
+  useEffect(() => {
+    dispatch(fetchAllDashboardData());
+  }, [dispatch]);
+
   const seeAllAction = (
     <Link
       to="/credit-cards"
