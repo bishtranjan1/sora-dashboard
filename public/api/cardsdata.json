@@ -18,7 +18,7 @@
       "balance": "24,350.75",
       "cardType": "amex",
       "currency": "$",
-      "backgroundColor": "bg-gradient-to-r from-zinc-800 via-black to-zinc-700"
+      "backgroundColor": "bg-gradient-to-r from-green-500 to-teal-500"
     },
     {
       "id": "card-3",

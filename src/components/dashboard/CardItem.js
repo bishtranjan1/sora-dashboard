@@ -45,12 +45,9 @@ const CardItem = ({ cardData, isActive = false }) => {
 
   const logo = getCardLogo();
 
-  // Use the backgroundColor prop if provided, otherwise fallback to the old method
+  // Use the backgroundColor prop if provided, otherwise fallback to the default
   const bgClass =
     backgroundColor || `bg-gradient-to-r from-blue-400 to-blue-600`;
-
-  // Add shine effect for premium cards like Amex
-  const isPremiumCard = cardType?.toLowerCase() === "amex";
 
   return (
     <div
@@ -59,22 +56,8 @@ const CardItem = ({ cardData, isActive = false }) => {
         cursor-pointer transition-all duration-300 hover:shadow-lg`}
       style={{
         height: "180px", // Fixed height for all cards
-        ...(isPremiumCard
-          ? {
-              background:
-                "linear-gradient(to right, #2e2e2e, #000000, #1a1a1a)",
-            }
-          : {}),
       }}
     >
-      {/* Subtle shine overlay for premium cards */}
-      {isPremiumCard && (
-        <>
-          <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent pointer-events-none"></div>
-          <div className="absolute top-0 left-0 w-full h-10 bg-gradient-to-r from-white/10 via-white/5 to-transparent pointer-events-none"></div>
-        </>
-      )}
-
       {/* Top section - Balance */}
       <div className="text-white relative z-10">
         <h3 className="font-medium text-gray-200">Balance</h3>
