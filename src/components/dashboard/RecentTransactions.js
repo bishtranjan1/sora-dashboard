@@ -56,39 +56,31 @@ const RecentTransactions = () => {
   };
 
   return (
-    <div className="w-full h-full">
-      <div
-        className="h-full overflow-y-auto pr-2"
-        style={{
-          scrollbarWidth: "thin",
-          scrollbarColor: "#D1D5DB transparent",
-        }}
-      >
-        <div className="space-y-4">
-          {transactions.map((transaction) => (
-            <div
-              key={transaction.id}
-              className="flex items-center p-3 bg-white rounded-xl hover:bg-gray-50 transition-colors duration-150"
-            >
-              <div className="flex-shrink-0 mr-3">
-                {getTransactionIcon(transaction.type)}
-              </div>
-              <div className="flex-grow mr-3">
-                <p className="font-medium text-gray-900">
-                  {transaction.description}
-                </p>
-                <p className="text-sm text-gray-500">
-                  {formatDate(transaction.date)}
-                </p>
-              </div>
-              <div className="text-right">
-                <p className="font-medium">
-                  {formatAmount(transaction.amount, transaction.type)}
-                </p>
-              </div>
+    <div className="h-full">
+      <div className="space-y-3">
+        {transactions.map((transaction) => (
+          <div
+            key={transaction.id}
+            className="flex items-center p-2.5 bg-white rounded-lg hover:bg-gray-50 transition-colors duration-150 border border-gray-100"
+          >
+            <div className="flex-shrink-0 mr-3">
+              {getTransactionIcon(transaction.type)}
             </div>
-          ))}
-        </div>
+            <div className="flex-grow mr-3">
+              <p className="font-medium text-gray-900 text-sm">
+                {transaction.description}
+              </p>
+              <p className="text-xs text-gray-500">
+                {formatDate(transaction.date)}
+              </p>
+            </div>
+            <div className="text-right">
+              <p className="font-medium text-sm">
+                {formatAmount(transaction.amount, transaction.type)}
+              </p>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );

@@ -8,9 +8,11 @@ const Card = ({
   className = "",
   headerClassName = "",
   bodyClassName = "",
+  height = "320px", // Default fixed height
+  scrollContent = false, // Whether content should scroll
 }) => {
   return (
-    <div className="flex flex-col h-full" style={{ height: "320px" }}>
+    <div className="flex flex-col h-full" style={{ height }}>
       {(title || subtitle || action) && (
         <div className={`px-2 mb-2 ${headerClassName}`}>
           <div className="flex items-center justify-between">
@@ -28,10 +30,14 @@ const Card = ({
       )}
 
       <div
-        className={`bg-white rounded-xl shadow-sm overflow-hidden flex-grow flex flex-col ${className}`}
+        className={`bg-white rounded-xl shadow-sm flex-grow flex flex-col ${className}`}
         style={{ height: "calc(100% - 30px)" }}
       >
-        <div className={`p-6 h-full flex flex-col ${bodyClassName}`}>
+        <div
+          className={`p-6 h-full flex flex-col ${bodyClassName} ${
+            scrollContent ? "overflow-y-auto" : "overflow-hidden"
+          }`}
+        >
           {children}
         </div>
       </div>

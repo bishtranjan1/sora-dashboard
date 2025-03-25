@@ -13,31 +13,11 @@ const MyCards = () => {
   const cards = useSelector(selectCards);
   const isLoading = useSelector(selectDashboardLoading);
   const error = useSelector(selectDashboardError);
-  const [isMobile, setIsMobile] = useState(false);
 
   // Fetch cards data from API on component mount
   useEffect(() => {
     dispatch(fetchCards());
   }, [dispatch]);
-
-  // Check if device is mobile on initial render and when window is resized
-  useEffect(() => {
-    const checkIsMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
-    // Initial check
-    checkIsMobile();
-
-    // Add event listener for window resize
-    window.addEventListener("resize", checkIsMobile);
-
-    // Clean up event listener on component unmount
-    return () => window.removeEventListener("resize", checkIsMobile);
-  }, []);
-
-  // On mobile, display only the first card, on desktop display all cards
-  const displayCards = isMobile ? cards.slice(0, 1) : cards;
 
   // Show loading state
   if (isLoading) {
@@ -63,22 +43,41 @@ const MyCards = () => {
       <div className="h-full flex items-center justify-center">
         <div className="text-gray-500">No cards available.</div>
       </div>
-    );
+    ); 
   }
 
   return (
-    <div className="h-full">
-      {/* Cards displayed side by side on desktop, one card on mobile */}
-      <div className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0 h-full">
-        {displayCards.map((card) => (
+    <div className="h-full overflow-hidden">
+      {/* Horizontally scrollable cards container */}
+      <div
+        className="flex overflow-x-auto pb-2 space-x-4 h-[210px]" // Fixed height for the card container
+        style={{
+          scrollbarWidth: "thin",
+          scrollbarColor: "#D1D5DB transparent",
+          msOverflowStyle: "none", // IE and Edge
+          WebkitOverflowScrolling: "touch", // Smooth scrolling on iOS
+        }}
+      >
+        {cards.map((card) => (
           <div
             key={card.id}
-            className={`w-full h-full ${!isMobile ? "md:w-1/2" : ""}`}
+            className="flex-shrink-0"
+            style={{ width: "300px" }} // Fixed width for each card
           >
             <CardItem cardData={card} isActive={true} />
           </div>
         ))}
       </div>
+      {/* Scroll indicator - subtle hint that there's more to scroll */}
+      {cards.length > 1 && (
+        <div className="flex justify-center mt-2">
+          <div className="flex space-x-1">
+            {cards.map((_, index) => (
+              <div key={index} className="w-2 h-2 rounded-full bg-gray-300" />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
