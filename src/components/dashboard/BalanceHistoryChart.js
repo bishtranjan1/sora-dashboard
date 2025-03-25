@@ -1,4 +1,5 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -11,6 +12,13 @@ import {
   Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+import {
+  selectBalanceHistory,
+  selectBalanceHistoryLoading,
+  selectBalanceHistoryError,
+  fetchBalanceHistory,
+} from "../../store/slices/dashboardSlice";
+import Spinner from "../ui/Spinner";
 
 // Register Chart.js components
 ChartJS.register(
@@ -27,41 +35,49 @@ ChartJS.register(
 const BalanceHistoryChart = ({ initialPeriod = "6m", fixedPeriod = false }) => {
   const [period, setPeriod] = useState(initialPeriod);
   const chartRef = useRef(null);
+  const dispatch = useDispatch();
 
-  // Define chart data for different periods
-  const periodData = {
-    "1w": {
-      labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-      values: [3200, 3400, 3300, 5200, 4800, 4000, 4500],
-    },
-    "1m": {
-      labels: ["Week 1", "Week 2", "Week 3", "Week 4"],
-      values: [3200, 3800, 5000, 4500],
-    },
-    "6m": {
-      labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
-      values: [3200, 3400, 3800, 4200, 4800, 5200],
-    },
-    "1y": {
-      labels: [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
-      ],
-      values: [
-        3200, 3400, 3600, 4000, 4200, 4800, 5200, 5400, 5200, 5600, 6000, 6200,
-      ],
-    },
-  };
+  // Get data from Redux store
+  const balanceHistory = useSelector(selectBalanceHistory);
+  const isLoading = useSelector(selectBalanceHistoryLoading);
+  const error = useSelector(selectBalanceHistoryError);
+
+  // Fetch data when component mounts or when period changes
+  useEffect(() => {
+    if (!balanceHistory || !balanceHistory.periodData) {
+      dispatch(fetchBalanceHistory());
+    }
+  }, [dispatch, balanceHistory]);
+
+  // Show loading spinner while data is being fetched
+  if (isLoading) {
+    return (
+      <div className="h-full w-full flex items-center justify-center">
+        <Spinner size="lg" />
+      </div>
+    );
+  }
+
+  // Show error message if data fetching failed
+  if (error) {
+    return (
+      <div className="h-full w-full flex items-center justify-center text-red-500">
+        <p>Error loading data: {error}</p>
+      </div>
+    );
+  }
+
+  // Show empty state if no data is available
+  if (!balanceHistory || !balanceHistory.periodData) {
+    return (
+      <div className="h-full w-full flex items-center justify-center text-gray-500">
+        <p>No balance history data available</p>
+      </div>
+    );
+  }
+
+  // Get period data from Redux store
+  const periodData = balanceHistory.periodData || {};
 
   // Chart options
   const options = {
@@ -74,8 +90,8 @@ const BalanceHistoryChart = ({ initialPeriod = "6m", fixedPeriod = false }) => {
         },
       },
       y: {
-        min: Math.min(...periodData[period].values) * 0.8,
-        max: Math.max(...periodData[period].values) * 1.2,
+        min: Math.min(...(periodData[period]?.values || [0])) * 0.8,
+        max: Math.max(...(periodData[period]?.values || [100])) * 1.2,
         grid: {
           display: true,
           color: "rgba(229, 231, 235, 0.5)",
@@ -108,7 +124,7 @@ const BalanceHistoryChart = ({ initialPeriod = "6m", fixedPeriod = false }) => {
         },
         callbacks: {
           title: function (context) {
-            return periodData[period].labels[context[0].dataIndex];
+            return periodData[period]?.labels[context[0].dataIndex] || "";
           },
           label: function (context) {
             const value = context.parsed.y;
@@ -186,13 +202,13 @@ const BalanceHistoryChart = ({ initialPeriod = "6m", fixedPeriod = false }) => {
     );
   };
 
-  // Data for the chart
-  const data = {
-    labels: periodData[period].labels,
+  // Data for the chart from Redux
+  const chartData = {
+    labels: periodData[period]?.labels || [],
     datasets: [
       {
         label: "Balance",
-        data: periodData[period].values,
+        data: periodData[period]?.values || [],
         fill: true,
         backgroundColor: "rgba(79, 70, 229, 0.2)",
         borderColor: "#4F46E5",
@@ -205,7 +221,7 @@ const BalanceHistoryChart = ({ initialPeriod = "6m", fixedPeriod = false }) => {
     <div className="flex flex-col h-full">
       {renderPeriodButtons()}
       <div className="flex-1">
-        <Line ref={chartRef} options={options} data={data} />
+        <Line ref={chartRef} options={options} data={chartData} />
       </div>
     </div>
   );

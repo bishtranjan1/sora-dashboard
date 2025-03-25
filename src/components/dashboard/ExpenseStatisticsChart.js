@@ -1,24 +1,72 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
 import ChartDataLabels from "chartjs-plugin-datalabels";
+import {
+  selectExpenseStatistics,
+  selectExpenseStatisticsLoading,
+  selectExpenseStatisticsError,
+  fetchExpenseStatistics,
+} from "../../store/slices/dashboardSlice";
+import Spinner from "../ui/Spinner";
 
 // Register Chart.js components
 ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels);
 
 const ExpenseStatisticsChart = () => {
   const chartRef = useRef(null);
+  const dispatch = useDispatch();
 
-  // Define the expense data with specified percentages
+  // Get data from Redux store
+  const expenseStatistics = useSelector(selectExpenseStatistics);
+  const isLoading = useSelector(selectExpenseStatisticsLoading);
+  const error = useSelector(selectExpenseStatisticsError);
+
+  // Fetch data when component mounts
+  useEffect(() => {
+    if (!expenseStatistics || !expenseStatistics.categories) {
+      dispatch(fetchExpenseStatistics());
+    }
+  }, [dispatch, expenseStatistics]);
+
+  // Show loading spinner while data is being fetched
+  if (isLoading) {
+    return (
+      <div className="h-full w-full flex items-center justify-center">
+        <Spinner size="lg" />
+      </div>
+    );
+  }
+
+  // Show error message if data fetching failed
+  if (error) {
+    return (
+      <div className="h-full w-full flex items-center justify-center text-red-500">
+        <p>Error loading data: {error}</p>
+      </div>
+    );
+  }
+
+  // Show empty state if no data is available
+  if (
+    !expenseStatistics ||
+    !expenseStatistics.categories ||
+    expenseStatistics.categories.length === 0
+  ) {
+    return (
+      <div className="h-full w-full flex items-center justify-center text-gray-500">
+        <p>No expense statistics data available</p>
+      </div>
+    );
+  }
+
+  // Process data from Redux store
+  const categories = expenseStatistics.categories || [];
   const expenseData = {
-    labels: ["Entertainment", "Bill expense", "Investment", "Others"],
-    percentages: [30, 15, 20, 35],
-    colors: [
-      "rgba(79, 70, 229, 1)", // primary (Entertainment)
-      "rgba(244, 63, 94, 1)", // secondary (Bill expense)
-      "rgba(16, 185, 129, 1)", // green-500 (Investment)
-      "rgba(245, 158, 11, 1)", // yellow-500 (Others)
-    ],
+    labels: categories.map((category) => category.name),
+    percentages: categories.map((category) => category.percentage),
+    colors: categories.map((category) => category.color),
   };
 
   // Chart options

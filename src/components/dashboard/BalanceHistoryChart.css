@@ -1,0 +1,58 @@
+/* Custom styles for the Balance History Chart */
+
+.balance-history-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 30px; /* Add extra padding at the bottom */
+}
+
+.chart-container {
+  flex: 1;
+  min-height: 280px;
+  position: relative;
+  margin-bottom: 20px; /* Add margin to the container */
+}
+
+/* Make sure the x-axis labels are visible */
+.chart-container canvas {
+  margin-bottom: 20px; /* Add margin to the canvas element */
+}
+
+/* Extra space for labels at the bottom */
+.balance-history-card .chart-container {
+  padding-bottom: 40px;
+}
+
+/* Override Chart.js styles to ensure labels are visible */
+@media (min-width: 1024px) {
+  .balance-history-card {
+    min-height: 450px !important;
+  }
+
+  .balance-history-card .chart-container {
+    min-height: 350px;
+  }
+}
+
+/* Ensure the card content has proper spacing */
+.balance-history-card-body {
+  padding-bottom: 40px !important;
+}
+
+/* Fix for chart.js's axis labels */
+.chart-js-container {
+  position: relative;
+  overflow: visible !important;
+}
+
+/* Override Chart.js defaults for axis labels */
+.chartjs-text {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Fix Canvas container */
+.balance-history-card canvas {
+  max-height: none !important;
+}
