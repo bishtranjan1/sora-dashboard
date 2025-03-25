@@ -63,7 +63,7 @@ const QuickTransfer = () => {
   };
 
   return (
-    <div className="flex flex-col space-y-4">
+    <div className="flex flex-col space-y-4 h-full justify-between">
       {/* Contacts row - reduced margin */}
       <div className="grid grid-cols-4 gap-2">
         {contacts.map((contact) => (

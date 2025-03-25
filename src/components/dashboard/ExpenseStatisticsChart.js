@@ -93,7 +93,7 @@ const ExpenseStatisticsChart = () => {
   };
 
   return (
-    <div className="h-full w-full">
+    <div className="h-full w-full flex items-center justify-center">
       <Pie ref={chartRef} options={options} data={data} />
     </div>
   );

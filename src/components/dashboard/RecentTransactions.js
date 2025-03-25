@@ -56,7 +56,7 @@ const RecentTransactions = () => {
   };
 
   return (
-    <div className="w-full" style={{ height: "250px" }}>
+    <div className="w-full h-full">
       <div
         className="h-full overflow-y-auto pr-2"
         style={{

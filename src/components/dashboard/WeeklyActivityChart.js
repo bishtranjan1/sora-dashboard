@@ -133,7 +133,7 @@ const WeeklyActivityChart = ({ period = "This Week" }) => {
   };
 
   return (
-    <div className="h-full w-full">
+    <div className="h-full w-full flex items-center justify-center">
       <Bar options={options} data={data} height={null} width={null} />
     </div>
   );

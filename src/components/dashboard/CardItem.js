@@ -54,7 +54,7 @@ const CardItem = ({ cardData, isActive = false }) => {
 
   return (
     <div
-      className={`relative rounded-xl overflow-hidden p-5 h-48 flex flex-col justify-between
+      className={`relative rounded-xl overflow-hidden p-5 h-full flex flex-col justify-between
         ${bgClass} ${isActive ? "ring-1 ring-primary" : ""}
         cursor-pointer transition-all duration-300 hover:shadow-lg`}
       style={

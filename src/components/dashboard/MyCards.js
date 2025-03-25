@@ -47,13 +47,13 @@ const MyCards = () => {
   const displayCards = isMobile ? cardsData.slice(0, 1) : cardsData;
 
   return (
-    <div>
+    <div className="h-full">
       {/* Cards displayed side by side on desktop, one card on mobile */}
-      <div className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
+      <div className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0 h-full">
         {displayCards.map((card) => (
           <div
             key={card.id}
-            className={`w-full ${!isMobile ? "md:w-1/2" : ""}`}
+            className={`w-full h-full ${!isMobile ? "md:w-1/2" : ""}`}
           >
             <CardItem cardData={card} isActive={true} />
           </div>
