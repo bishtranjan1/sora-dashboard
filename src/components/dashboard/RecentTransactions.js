@@ -1,5 +1,5 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import {
   ArrowTrendingUpIcon,
   ArrowTrendingDownIcon,
@@ -9,12 +9,22 @@ import {
   selectTransactions,
   selectTransactionsLoading,
   selectTransactionsError,
+  fetchTransactions,
 } from "../../store/slices/dashboardSlice";
+import Spinner from "../ui/Spinner";
 
 const RecentTransactions = () => {
+  const dispatch = useDispatch();
   const transactions = useSelector(selectTransactions);
   const isLoading = useSelector(selectTransactionsLoading);
   const error = useSelector(selectTransactionsError);
+
+  // Fetch transactions data on component mount
+  useEffect(() => {
+    if (!transactions || transactions.length === 0) {
+      dispatch(fetchTransactions());
+    }
+  }, [dispatch, transactions]);
 
   const getTransactionIcon = (type) => {
     switch (type) {
@@ -67,9 +77,7 @@ const RecentTransactions = () => {
   if (isLoading) {
     return (
       <div className="h-full flex items-center justify-center">
-        <div className="animate-pulse text-gray-500">
-          Loading transactions...
-        </div>
+        <Spinner size="lg" color="primary" />
       </div>
     );
   }

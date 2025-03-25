@@ -1,14 +1,34 @@
-import React, { useEffect } from "react";
+import React, { lazy, Suspense, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import Card from "../components/ui/Card";
-import BalanceHistoryChart from "../components/dashboard/BalanceHistoryChart";
-import ExpenseStatisticsChart from "../components/dashboard/ExpenseStatisticsChart";
-import MyCards from "../components/dashboard/MyCards";
-import RecentTransactions from "../components/dashboard/RecentTransactions";
-import WeeklyActivityChart from "../components/dashboard/WeeklyActivityChart";
-import QuickTransfer from "../components/dashboard/QuickTransfer";
+import Spinner from "../components/ui/Spinner";
 import { Link } from "react-router-dom";
 import { fetchAllDashboardData } from "../store/slices/dashboardSlice";
+
+// Lazy load all dashboard components
+const MyCards = lazy(() => import("../components/dashboard/MyCards"));
+const RecentTransactions = lazy(() =>
+  import("../components/dashboard/RecentTransactions")
+);
+const WeeklyActivityChart = lazy(() =>
+  import("../components/dashboard/WeeklyActivityChart")
+);
+const ExpenseStatisticsChart = lazy(() =>
+  import("../components/dashboard/ExpenseStatisticsChart")
+);
+const QuickTransfer = lazy(() =>
+  import("../components/dashboard/QuickTransfer")
+);
+const BalanceHistoryChart = lazy(() =>
+  import("../components/dashboard/BalanceHistoryChart")
+);
+
+// Spinner loader component for Suspense fallback
+const ComponentLoader = () => (
+  <div className="h-full w-full flex items-center justify-center">
+    <Spinner size="lg" color="primary" />
+  </div>
+);  
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -41,7 +61,9 @@ const Dashboard = () => {
             action={seeAllAction}
             height={rowHeight}
           >
-            <MyCards />
+            <Suspense fallback={<ComponentLoader />}>
+              <MyCards />
+            </Suspense>
           </Card>
         </div>
         <div className="w-full lg:w-1/3">
@@ -51,7 +73,9 @@ const Dashboard = () => {
             height={{ default: "auto", lg: rowHeight }}
             scrollContent={true} // Enable vertical scrolling
           >
-            <RecentTransactions />
+            <Suspense fallback={<ComponentLoader />}>
+              <RecentTransactions />
+            </Suspense>
           </Card>
         </div>
       </div>
@@ -60,7 +84,9 @@ const Dashboard = () => {
       <div className="flex flex-col lg:flex-row gap-6">
         <div className="w-full lg:w-2/3">
           <Card title="Weekly Activity" className="h-full" height={rowHeight}>
-            <WeeklyActivityChart period="This Week" />
+            <Suspense fallback={<ComponentLoader />}>
+              <WeeklyActivityChart period="This Week" />
+            </Suspense>
           </Card>
         </div>
         <div className="w-full lg:w-1/3">
@@ -69,7 +95,9 @@ const Dashboard = () => {
             className="h-full"
             height={rowHeight}
           >
-            <ExpenseStatisticsChart />
+            <Suspense fallback={<ComponentLoader />}>
+              <ExpenseStatisticsChart />
+            </Suspense>
           </Card>
         </div>
       </div>
@@ -83,12 +111,16 @@ const Dashboard = () => {
             height={{ default: "auto", lg: rowHeight }}
             scrollContent={true} // Enable vertical scrolling for overflow content
           >
-            <QuickTransfer />
+            <Suspense fallback={<ComponentLoader />}>
+              <QuickTransfer />
+            </Suspense>
           </Card>
         </div>
         <div className="w-full lg:w-2/3">
           <Card title="Balance History" className="h-full" height={rowHeight}>
-            <BalanceHistoryChart initialPeriod="1y" fixedPeriod={true} />
+            <Suspense fallback={<ComponentLoader />}>
+              <BalanceHistoryChart initialPeriod="1y" fixedPeriod={true} />
+            </Suspense>
           </Card>
         </div>
       </div>

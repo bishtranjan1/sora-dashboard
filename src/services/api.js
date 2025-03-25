@@ -10,9 +10,6 @@ const API_URL = "/api";
  */
 const fetchData = async (endpoint) => {
   try {
-    // Add artificial delay of 2 seconds
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-
     const response = await fetch(`${API_URL}/${endpoint}`);
 
     if (!response.ok) {
